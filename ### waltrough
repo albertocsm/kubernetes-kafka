@@ -1,0 +1,38 @@
+waltrough
+
+	setup kafka
+
+		TBD (create infra)
+
+		TBD (deploy sts, svc, configmaps for zoo and kafka and jmx/prometheus[1] )
+
+
+	config kafka
+
+		run "CLI"
+			kubectl -n kafka run cli --image=solsson/kafka:1.0.1 --command -- sleep 3600
+
+		create topic
+			./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic 10-partitions --partitions "10" --replication-factor "1"
+
+
+
+	reset / update / others
+		kubectl -n kafka scale --replicas=0 sts kafka
+		kubectl -n kafka delete pvc data1-kafka-0 data2-kafka-0 data3-kafka-0 data4-kafka-0 data5-kafka-0 data6-kafka-0 data7-kafka-0 data8-kafka-0		
+		kubectl -n kafka delete cm broker-config
+		kubectl -n kafka delete sts kafka
+
+		kubectl -n monitoring port-forward mon-grafana-65cd69b4cd-dt6hg 3000:3000 &
+		kubectl -n monitoring get ServiceMonitor
+		kubectl -n monitoring get secret prometheus-mon-prometheus -ojson | jq -r '.data["prometheus.yaml"]' | base64 -d | grep job_name
+		kubectl -n kafka exec -it kafka-0 --container broker bash
+		kubectl -n kafka logs -f  kafka-0 --container broker
+
+
+
+
+[1]
+https://gist.github.com/solsson/be80667dade3b82538e212512e752637
+https://github.com/rama-nallamilli/kafka-prometheus-monitoring/blob/master/prometheus-jmx-exporter/confd/templates/kafka.yml.tmpl
+https://docs.confluent.io/current/kafka/monitoring.html#broker-metrics

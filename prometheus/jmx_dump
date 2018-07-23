@@ -1,0 +1,182 @@
+# HELP kafka_server_controller_channel_metrics_connection_count The current number of active connections. (kafka.server<type=controller-channel-metrics, broker-id=0><>connection-count)                                                                                        
+# TYPE kafka_server_controller_channel_metrics_connection_count untyped
+kafka_server_controller_channel_metrics_connection_count{broker_id="0",} 1.0
+
+# HELP kafka_server_controller_channel_metrics_failed_authentication_rate The number of connections with failed authentication per second (kafka.server<type=controller-channel-metrics, broker-id=0><>failed-authentication-rate)
+# TYPE kafka_server_controller_channel_metrics_failed_authentication_rate untyped
+kafka_server_controller_channel_metrics_failed_authentication_rate{broker_id="0",} 0.0
+
+# HELP kafka_server_controller_channel_metrics_incoming_byte_rate The number of bytes read off all sockets per second (kafka.server<type=controller-channel-metrics, broker-id=0><>incoming-byte-rate)
+# TYPE kafka_server_controller_channel_metrics_incoming_byte_rate untyped
+kafka_server_controller_channel_metrics_incoming_byte_rate{broker_id="0",} 0.0
+
+# HELP java_lang_memory_heapmemoryusage_used java.lang.management.MemoryUsage (java.lang<type=Memory><HeapMemoryUsage>used)
+# TYPE java_lang_memory_heapmemoryusage_used untyped
+java_lang_memory_heapmemoryusage_used 5.70049624E8
+
+# HELP kafka_server_controller_channel_metrics_connection_close_total The total number of connections closed (kafka.server<type=controller-channel-metrics, broker-id=0><>connection-close-total)
+# TYPE kafka_server_controller_channel_metrics_connection_close_total untyped
+kafka_server_controller_channel_metrics_connection_close_total{broker_id="0",} 0.0
+
+# HELP kafka_server_controller_channel_metrics_select_rate The number of times the I/O layer checked for new I/O to perform per second (kafka.server<type=controller-channel-metrics, broker-id=0><>select-rate)
+# TYPE kafka_server_controller_channel_metrics_select_rate untyped
+kafka_server_controller_channel_metrics_select_rate{broker_id="0",} 0.0
+
+# HELP kafka_server_controller_channel_metrics_request_total The total number of requests sent (kafka.server<type=controller-channel-metrics, broker-id=0><>request-total)
+# TYPE kafka_server_controller_channel_metrics_request_total untyped
+kafka_server_controller_channel_metrics_request_total{broker_id="0",} 153.0
+
+# HELP kafka_server_controller_channel_metrics_response_rate The number of responses received per second (kafka.server<type=controller-channel-metrics, broker-id=0><>response-rate)
+# TYPE kafka_server_controller_channel_metrics_response_rate untyped
+kafka_server_controller_channel_metrics_response_rate{broker_id="0",} 0.0
+
+# HELP kafka_server_controller_channel_metrics_io_wait_time_ns_avg The average length of time the I/O thread spent waiting for a socket ready for reads or writes in nanoseconds. (kafka.server<type=controller-channel-metrics, broker-id=0><>io-wait-time-ns-avg)
+# TYPE kafka_server_controller_channel_metrics_io_wait_time_ns_avg untyped
+kafka_server_controller_channel_metrics_io_wait_time_ns_avg{broker_id="0",} 0.0
+
+# HELP kafka_server_controller_channel_metrics_outgoing_byte_total The total number of outgoing bytes sent to all servers (kafka.server<type=controller-channel-metrics, broker-id=0><>outgoing-byte-total)
+# TYPE kafka_server_controller_channel_metrics_outgoing_byte_total untyped
+kafka_server_controller_channel_metrics_outgoing_byte_total{broker_id="0",} 153.0
+
+# HELP kafka_server_controller_channel_metrics_successful_authentication_rate The number of connections with successful authentication per second (kafka.server<type=controller-channel-metrics, broker-id=0><>successful-authentication-rate)
+# TYPE kafka_server_controller_channel_metrics_successful_authentication_rate untyped
+kafka_server_controller_channel_metrics_successful_authentication_rate{broker_id="0",} 0.0
+
+# HELP kafka_server_replicamanager_value Attribute exposed for management (kafka.server<type=ReplicaManager, name=PartitionCount><>Value)
+# TYPE kafka_server_replicamanager_value untyped
+kafka_server_replicamanager_value{name="PartitionCount",} 0.0
+kafka_server_replicamanager_value{name="UnderReplicatedPartitions",} 0.0
+
+# HELP kafka_server_controller_channel_metrics_request_size_max The maximum size of any request sent. (kafka.server<type=controller-channel-metrics, broker-id=0><>request-size-max)
+# TYPE kafka_server_controller_channel_metrics_request_size_max untyped
+kafka_server_controller_channel_metrics_request_size_max{broker_id="0",} -Inf
+
+# HELP kafka_server_controller_channel_metrics_incoming_byte_total The total number of bytes read off all sockets (kafka.server<type=controller-channel-metrics, broker-id=0><>incoming-byte-total)
+# TYPE kafka_server_controller_channel_metrics_incoming_byte_total untyped
+kafka_server_controller_channel_metrics_incoming_byte_total{broker_id="0",} 6.0
+
+# HELP java_lang_operatingsystem_systemcpuload SystemCpuLoad (java.lang<type=OperatingSystem><>SystemCpuLoad)
+# TYPE java_lang_operatingsystem_systemcpuload untyped
+java_lang_operatingsystem_systemcpuload 0.08848797250859107
+
+# HELP kafka_controller_kafkacontroller_value Attribute exposed for management (kafka.controller<type=KafkaController, name=GlobalTopicCount><>Value)
+# TYPE kafka_controller_kafkacontroller_value untyped
+kafka_controller_kafkacontroller_value{name="GlobalTopicCount",} 0.0
+kafka_controller_kafkacontroller_value{name="GlobalPartitionCount",} 0.0
+kafka_controller_kafkacontroller_value{name="OfflinePartitionsCount",} 0.0
+kafka_controller_kafkacontroller_value{name="PreferredReplicaImbalanceCount",} 0.0
+kafka_controller_kafkacontroller_value{name="ActiveControllerCount",} 1.0
+kafka_controller_kafkacontroller_value{name="ControllerState",} 0.0
+
+# HELP kafka_server_controller_channel_metrics_connection_creation_rate The number of new connections established per second (kafka.server<type=controller-channel-metrics, broker-id=0><>connection-creation-rate)
+# TYPE kafka_server_controller_channel_metrics_connection_creation_rate untyped
+kafka_server_controller_channel_metrics_connection_creation_rate{broker_id="0",} 0.0
+
+# HELP kafka_server_controller_channel_metrics_connection_close_rate The number of connections closed per second (kafka.server<type=controller-channel-metrics, broker-id=0><>connection-close-rate)
+# TYPE kafka_server_controller_channel_metrics_connection_close_rate untyped
+kafka_server_controller_channel_metrics_connection_close_rate{broker_id="0",} 0.0
+
+# HELP kafka_server_controller_channel_metrics_network_io_total The total number of network operations (reads or writes) on all connections (kafka.server<type=controller-channel-metrics, broker-id=0><>network-io-total)
+# TYPE kafka_server_controller_channel_metrics_network_io_total untyped
+kafka_server_controller_channel_metrics_network_io_total{broker_id="0",} 159.0
+
+# HELP kafka_server_controller_channel_metrics_select_total The total number of times the I/O layer checked for new I/O to perform (kafka.server<type=controller-channel-metrics, broker-id=0><>select-total)
+# TYPE kafka_server_controller_channel_metrics_select_total untyped
+kafka_server_controller_channel_metrics_select_total{broker_id="0",} 1.6673309E7
+
+# HELP kafka_server_controller_channel_metrics_request_rate The number of requests sent per second (kafka.server<type=controller-channel-metrics, broker-id=0><>request-rate)
+# TYPE kafka_server_controller_channel_metrics_request_rate untyped
+kafka_server_controller_channel_metrics_request_rate{broker_id="0",} 0.0
+
+# HELP kafka_server_controller_channel_metrics_request_size_avg The average size of requests sent. (kafka.server<type=controller-channel-metrics, broker-id=0><>request-size-avg)
+# TYPE kafka_server_controller_channel_metrics_request_size_avg untyped
+kafka_server_controller_channel_metrics_request_size_avg{broker_id="0",} 0.0
+
+# HELP kafka_server_controller_channel_metrics_connection_creation_total The total number of new connections established (kafka.server<type=controller-channel-metrics, broker-id=0><>connection-creation-total)
+# TYPE kafka_server_controller_channel_metrics_connection_creation_total untyped
+kafka_server_controller_channel_metrics_connection_creation_total{broker_id="0",} 1.0
+
+# HELP kafka_server_controller_channel_metrics_failed_authentication_total The total number of connections with failed authentication (kafka.server<type=controller-channel-metrics, broker-id=0><>failed-authentication-total)
+# TYPE kafka_server_controller_channel_metrics_failed_authentication_total untyped
+kafka_server_controller_channel_metrics_failed_authentication_total{broker_id="0",} 0.0
+
+# HELP kafka_server_replicafetchermanager_value Attribute exposed for management (kafka.server<type=ReplicaFetcherManager, name=MaxLag, clientId=Replica><>Value)
+# TYPE kafka_server_replicafetchermanager_value untyped
+kafka_server_replicafetchermanager_value{name="MaxLag",clientId="Replica",} 0.0
+
+# HELP kafka_server_controller_channel_metrics_io_wait_ratio The fraction of time the I/O thread spent waiting (kafka.server<type=controller-channel-metrics, broker-id=0><>io-wait-ratio)
+# TYPE kafka_server_controller_channel_metrics_io_wait_ratio untyped
+kafka_server_controller_channel_metrics_io_wait_ratio{broker_id="0",} 0.0
+
+# HELP kafka_server_controller_channel_metrics_outgoing_byte_rate The number of outgoing bytes sent to all servers per second (kafka.server<type=controller-channel-metrics, broker-id=0><>outgoing-byte-rate)
+# TYPE kafka_server_controller_channel_metrics_outgoing_byte_rate untyped
+kafka_server_controller_channel_metrics_outgoing_byte_rate{broker_id="0",} 0.0
+
+# HELP kafka_server_controller_channel_metrics_successful_authentication_total The total number of connections with successful authentication (kafka.server<type=controller-channel-metrics, broker-id=0><>successful-authentication-total)
+# TYPE kafka_server_controller_channel_metrics_successful_authentication_total untyped
+kafka_server_controller_channel_metrics_successful_authentication_total{broker_id="0",} 0.0
+
+# HELP java_lang_operatingsystem_freephysicalmemorysize FreePhysicalMemorySize (java.lang<type=OperatingSystem><>FreePhysicalMemorySize)
+# TYPE java_lang_operatingsystem_freephysicalmemorysize untyped
+java_lang_operatingsystem_freephysicalmemorysize 1.978146816E9
+
+# HELP kafka_server_kafkarequesthandlerpool_oneminuterate Attribute exposed for management (kafka.server<type=KafkaRequestHandlerPool, name=RequestHandlerAvgIdlePercent><>OneMinuteRate)
+# TYPE kafka_server_kafkarequesthandlerpool_oneminuterate untyped
+kafka_server_kafkarequesthandlerpool_oneminuterate{name="RequestHandlerAvgIdlePercent",} 1.0013563730230202
+
+# HELP kafka_server_controller_channel_metrics_network_io_rate The number of network operations (reads or writes) on all connections per second (kafka.server<type=controller-channel-metrics, broker-id=0><>network-io-rate)
+# TYPE kafka_server_controller_channel_metrics_network_io_rate untyped
+kafka_server_controller_channel_metrics_network_io_rate{broker_id="0",} 0.0
+
+# HELP kafka_server_controller_channel_metrics_io_time_ns_avg The average length of time for I/O per select call in nanoseconds. (kafka.server<type=controller-channel-metrics, broker-id=0><>io-time-ns-avg)
+# TYPE kafka_server_controller_channel_metrics_io_time_ns_avg untyped
+kafka_server_controller_channel_metrics_io_time_ns_avg{broker_id="0",} 0.0
+
+# HELP kafka_server_fetch_queue_size Tracks the size of the delay queue (kafka.server<type=Fetch><>queue-size)
+# TYPE kafka_server_fetch_queue_size untyped
+kafka_server_fetch_queue_size 0.0
+
+# HELP kafka_server_controller_channel_metrics_iotime_total The total time the I/O thread spent doing I/O (kafka.server<type=controller-channel-metrics, broker-id=0><>iotime-total)
+# TYPE kafka_server_controller_channel_metrics_iotime_total untyped
+kafka_server_controller_channel_metrics_iotime_total{broker_id="0",} 8207368.0
+
+# HELP kafka_server_controller_channel_metrics_io_waittime_total The total time the I/O thread spent waiting (kafka.server<type=controller-channel-metrics, broker-id=0><>io-waittime-total)
+# TYPE kafka_server_controller_channel_metrics_io_waittime_total untyped
+kafka_server_controller_channel_metrics_io_waittime_total{broker_id="0",} 1.6673309E7
+
+# HELP kafka_server_controller_channel_metrics_response_total The total number of responses received (kafka.server<type=controller-channel-metrics, broker-id=0><>response-total)
+# TYPE kafka_server_controller_channel_metrics_response_total untyped
+kafka_server_controller_channel_metrics_response_total{broker_id="0",} 6.0
+
+# HELP kafka_server_produce_queue_size Tracks the size of the delay queue (kafka.server<type=Produce><>queue-size)
+# TYPE kafka_server_produce_queue_size untyped
+kafka_server_produce_queue_size 0.0
+
+# HELP kafka_server_sessionexpirelistener_oneminuterate Attribute exposed for management (kafka.server<type=SessionExpireListener, name=ZooKeeperDisconnectsPerSec><>OneMinuteRate)
+# TYPE kafka_server_sessionexpirelistener_oneminuterate untyped
+kafka_server_sessionexpirelistener_oneminuterate{name="ZooKeeperDisconnectsPerSec",} 0.0
+kafka_server_sessionexpirelistener_oneminuterate{name="ZooKeeperSaslAuthenticationsPerSec",} 0.0
+kafka_server_sessionexpirelistener_oneminuterate{name="ZooKeeperAuthFailuresPerSec",} 0.0
+kafka_server_sessionexpirelistener_oneminuterate{name="ZooKeeperExpiresPerSec",} 0.0
+kafka_server_sessionexpirelistener_oneminuterate{name="ZooKeeperSyncConnectsPerSec",} 0.0
+kafka_server_sessionexpirelistener_oneminuterate{name="ZooKeeperReadOnlyConnectsPerSec",} 0.0
+
+# HELP kafka_server_controller_channel_metrics_io_ratio The fraction of time the I/O thread spent doing I/O (kafka.server<type=controller-channel-metrics, broker-id=0><>io-ratio)
+# TYPE kafka_server_controller_channel_metrics_io_ratio untyped
+kafka_server_controller_channel_metrics_io_ratio{broker_id="0",} 0.0
+
+# HELP jmx_scrape_duration_seconds Time this JMX scrape took, in seconds.
+# TYPE jmx_scrape_duration_seconds gauge
+jmx_scrape_duration_seconds 0.193339389
+
+# HELP jmx_scrape_error Non-zero if this scrape failed.
+# TYPE jmx_scrape_error gauge
+jmx_scrape_error 0.0
+
+# HELP jmx_config_reload_success_total Number of times configuration have successfully been reloaded.
+# TYPE jmx_config_reload_success_total counter
+jmx_config_reload_success_total 0.0
+
+# HELP jmx_config_reload_failure_total Number of times configuration have failed to be reloaded.
+# TYPE jmx_config_reload_failure_total counter
+jmx_config_reload_failure_total 0.0

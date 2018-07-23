@@ -1,0 +1,31 @@
+ToDo
+
+write up conclusion
+	enumerate evaluated scalling options and support the choosen one (simplification-option) with solid info
+
+
+continue load tests
+	
+	DONE - bootstrap the cluster with the option candidate
+
+	DONE - load test kafka and make sure we can handle the current loads
+
+	-> vertical scalling load test to 5X the current load (we have arround 60k msg/sec, scale to 350k msg/sec)
+		
+		-> clarify the relation between performance and the # partitions VS # topics VS # consumers VS # producers
+			repeat the 5X test with different setups of # topics and #partitions	
+
+		-> DONE - add proper telemetry to kafka (check https://github.com/danielqsj/kafka_exporter)
+		
+		DONE - change from `emptyDir` to a realistic volume type
+
+		
+	
+	DONE - tweak message size to be on pair with what we have in production 
+		arrounf 1KB 	
+
+	write up results
+
+
+refactor the deployment artifacts to be inline with TA standards
+	clean up config maps svcs and statefullsets

@@ -1,0 +1,202 @@
+apiVersion: apps/v1beta2
+kind: StatefulSet
+metadata:
+  name: kafka
+  namespace: kafka
+spec:
+  selector:
+    matchLabels:
+      app: kafka
+  serviceName: "broker"
+  replicas: 1
+  updateStrategy:
+    type: OnDelete
+  template:
+    metadata:
+      labels:
+        app: kafka
+      annotations:
+    spec:
+      terminationGracePeriodSeconds: 30
+
+      nodeSelector:
+        app: kafka
+      tolerations:
+      - effect: NoSchedule
+        key: app
+        operator: Equal
+        value: kafka
+
+      initContainers:
+      - name: init-config
+        image: solsson/kafka-initutils@sha256:18bf01c2c756b550103a99b3c14f741acccea106072cd37155c6d24be4edd6e2
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        command: ['/bin/bash', '/etc/kafka-configmap/init.sh']
+        volumeMounts:
+        - name: configmap
+          mountPath: /etc/kafka-configmap
+        - name: config
+          mountPath: /etc/kafka
+      
+      containers:
+      - name: metrics
+        image: solsson/kafka-prometheus-jmx-exporter@sha256:a23062396cd5af1acdf76512632c20ea6be76885dfc20cd9ff40fb23846557e8
+        command:
+        - java
+        - -XX:+UnlockExperimentalVMOptions
+        - -XX:+UseCGroupMemoryLimitForHeap
+        - -XX:MaxRAMFraction=1
+        - -XshowSettings:vm
+        - -jar
+        - jmx_prometheus_httpserver.jar
+        - "5556"
+        - /etc/jmx-kafka/jmx-kafka-prometheus.yml
+        ports:
+        - name: jmx
+          containerPort: 5556
+        resources:
+          requests:
+            cpu: 512m
+            memory: 256Mi
+          limits:
+            memory: 512Mi
+        volumeMounts:
+        - name: jmx-config
+          mountPath: /etc/jmx-kafka            
+
+      - name: broker
+        image: solsson/kafka:1.0.2
+        env:
+        - name: KAFKA_HEAP_OPTS
+          value: -Xmx6G -Xms6G
+        - name: KAFKA_JVM_PERFORMANCE_OPTS
+          value: -XX:MetaspaceSize=96m -XX:+UseG1GC -XX:MaxGCPauseMillis=20 -XX:InitiatingHeapOccupancyPercent=35 -XX:G1HeapRegionSize=16M -XX:MinMetaspaceFreeRatio=50 -XX:MaxMetaspaceFreeRatio=80
+        - name: KAFKA_LOG4J_OPTS00
+          value: -Dlog4j.configuration=file:/etc/kafka/log4j.properties
+        - name: JMX_PORT
+          value: "5555"
+        ports:
+        - name: inside
+          containerPort: 9092
+        - name: outside
+          containerPort: 9094
+        - name: jmx
+          containerPort: 5555
+        command:
+        - ./bin/kafka-server-start.sh
+        - /etc/kafka/server.properties
+        resources:
+          requests:
+            cpu: 100m
+            memory: 512Mi
+        readinessProbe:
+          tcpSocket:
+            port: 9092
+          timeoutSeconds: 1
+        volumeMounts:
+        - name: config
+          mountPath: /etc/kafka
+        - name: data1
+          mountPath: /var/lib/kafka/data1
+        - name: data2
+          mountPath: /var/lib/kafka/data2
+        - name: data3
+          mountPath: /var/lib/kafka/data3
+        - name: data4
+          mountPath: /var/lib/kafka/data4
+        - name: data5
+          mountPath: /var/lib/kafka/data5
+        - name: data6
+          mountPath: /var/lib/kafka/data6
+        - name: data7
+          mountPath: /var/lib/kafka/data7
+        - name: data8
+          mountPath: /var/lib/kafka/data8
+
+      volumes:
+      - name: jmx-config
+        configMap:
+          name: jmx-config
+      - name: configmap
+        configMap:
+          name: broker-config
+      - name: config
+        emptyDir: {}
+
+  volumeClaimTemplates:
+  - metadata:
+      name: data1
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: kafka-broker
+      resources:
+        requests:
+          storage: 1000Gi
+  - metadata:
+      name: data2
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: kafka-broker
+      resources:
+        requests:
+          storage: 1000Gi
+  - metadata:
+      name: data3
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: kafka-broker
+      resources:
+        requests:
+          storage: 1000Gi
+  - metadata:
+      name: data4
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: kafka-broker
+      resources:
+        requests:
+          storage: 1000Gi
+  - metadata:
+      name: data5
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: kafka-broker
+      resources:
+        requests:
+          storage: 1000Gi
+  - metadata:
+      name: data6
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: kafka-broker
+      resources:
+        requests:
+          storage: 1000Gi
+  - metadata:
+      name: data7
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: kafka-broker
+      resources:
+        requests:
+          storage: 1000Gi
+  - metadata:
+      name: data8
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: kafka-broker
+      resources:
+        requests:
+          storage: 1000Gi                                                  
