@@ -83,7 +83,7 @@ data:
     #   EXAMPLE:
     #     listeners = PLAINTEXT://your.host.name:9092
     #listeners=PLAINTEXT://:9092
-    listeners=OUTSIDE://:9094,PLAINTEXT://:9092
+    #listeners=OUTSIDE://:9094,PLAINTEXT://:9092
 
     # Hostname and port the broker will advertise to producers and consumers. If not set,
     # it uses the value for "listeners" if configured.  Otherwise, it will use the value
@@ -93,9 +93,8 @@ data:
 
     # Maps listener names to security protocols, the default is for them to be the same. See the config documentation for more details
     #listener.security.protocol.map=PLAINTEXT:PLAINTEXT,SSL:SSL,SASL_PLAINTEXT:SASL_PLAINTEXT,SASL_SSL:SASL_SSL
-    listener.security.protocol.map=PLAINTEXT:PLAINTEXT,SSL:SSL,SASL_PLAINTEXT:SASL_PLAINTEXT,SASL_SSL:SASL_SSL,OUTSIDE:PLAINTEXT
-    inter.broker.listener.name=PLAINTEXT
-
+    #listener.security.protocol.map=PLAINTEXT:PLAINTEXT,SSL:SSL,SASL_PLAINTEXT:SASL_PLAINTEXT,SASL_SSL:SASL_SSL,OUTSIDE:PLAINTEXT
+    #inter.broker.listener.name=PLAINTEXT
 
     # The number of threads that the server uses for receiving requests from the network and sending responses to the network
     num.network.threads=16
@@ -178,6 +177,10 @@ data:
     # We override this to 0 here as it makes for a better out-of-the-box experience for development and testing.
     # However, in production environments the default value of 3 seconds is more suitable as this will help to avoid unnecessary, and potentially expensive, rebalances during application startup.
     group.initial.rebalance.delay.ms=0
+    advertised.port=9092
+    advertised.host.name=10.132.0.21
+    port=9092
+
 
   log4j.properties: |-
     # Unspecified loggers and loggers with additivity=true output to server.log and stdout

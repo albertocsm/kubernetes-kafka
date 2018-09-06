@@ -19,6 +19,13 @@ spec:
         storage: ephemeral
       annotations:
     spec:
+      nodeSelector:
+        app: zoo
+      tolerations:
+      - effect: NoSchedule
+        key: app
+        operator: Equal
+        value: zoo
       terminationGracePeriodSeconds: 10
       initContainers:
       - name: init-config
@@ -42,6 +49,7 @@ spec:
         - /etc/kafka/zookeeper.properties
         ports:
         - containerPort: 2181
+          hostPort: 2181
           name: client
         - containerPort: 2888
           name: peer

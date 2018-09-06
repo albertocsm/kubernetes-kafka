@@ -9,7 +9,7 @@ spec:
       app: zookeeper
       storage: persistent
   serviceName: "pzoo"
-  replicas: 3
+  replicas: 1
   updateStrategy:
     type: OnDelete
   template:
@@ -20,6 +20,13 @@ spec:
       annotations:
     spec:
       terminationGracePeriodSeconds: 10
+      nodeSelector:
+        app: zoo
+      tolerations:
+      - effect: NoSchedule
+        key: app
+        operator: Equal
+        value: zoo
       initContainers:
       - name: init-config
         image: solsson/kafka-initutils@sha256:18bf01c2c756b550103a99b3c14f741acccea106072cd37155c6d24be4edd6e2
@@ -42,6 +49,7 @@ spec:
         - /etc/kafka/zookeeper.properties
         ports:
         - containerPort: 2181
+          hostPort: 2181
           name: client
         - containerPort: 2888
           name: peer
