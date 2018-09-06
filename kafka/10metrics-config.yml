@@ -1,7 +1,7 @@
 kind: ConfigMap
 metadata:
   name: kafka-jmx-config
-  namespace: kafka
+  namespace: staging
 apiVersion: v1
 data:
 

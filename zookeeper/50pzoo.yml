@@ -1,32 +1,30 @@
 apiVersion: apps/v1beta2
 kind: StatefulSet
 metadata:
-  name: pzoo
-  namespace: kafka
+  name: kafka-zookeeper
+  namespace: staging
 spec:
   selector:
     matchLabels:
-      app: zookeeper
+      app: kafka-zookeeper
       storage: persistent
-  serviceName: "pzoo"
+  serviceName: "kafka-zookeeper-headless"
   replicas: 1
   updateStrategy:
     type: OnDelete
   template:
     metadata:
       labels:
-        app: zookeeper
+        app: kafka-zookeeper
         storage: persistent
       annotations:
     spec:
-      terminationGracePeriodSeconds: 10
-      nodeSelector:
-        app: zoo
+      terminationGracePeriodSeconds: 10      
       tolerations:
       - effect: NoSchedule
-        key: app
+        key: dedicated
         operator: Equal
-        value: zoo
+        value: kafka
       initContainers:
       - name: init-config
         image: solsson/kafka-initutils@sha256:18bf01c2c756b550103a99b3c14f741acccea106072cd37155c6d24be4edd6e2
@@ -73,7 +71,7 @@ spec:
       volumes:
       - name: configmap
         configMap:
-          name: zookeeper-config
+          name: kafka-zookeeper-config
       - name: config
         emptyDir: {}
   volumeClaimTemplates:

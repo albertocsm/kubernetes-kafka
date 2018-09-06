@@ -1,19 +1,33 @@
 waltrough
 
+	resize gke cluster (nodepool)
+		gcloud container clusters resize kafka-load-test-1  --size=0 --node-pool=default-pool
+
 	setup kafka
 
 		TBD (create infra)
 
-		TBD (deploy sts, svc, configmaps for zoo and kafka and jmx/prometheus[1] )
+		TBD (deploy sts, svc, configmaps for zoo and kafka and optionaly, for jmx/prometheus[1] )
+
+		create a namespace or make sure the namespace being used bu the k8s artifacts does exist
+
+		create storage classes
+
+		create config maps
+
+		create svcs
+
+		create sts
+
 
 
 	config kafka
 
 		run "CLI"
-			kubectl -n kafka run cli --image=solsson/kafka:1.0.1 --command -- sleep 3600
+			kubectl -n kafka run cli --image=solsson/kafka:2.0.0 --command -- sleep 3600
 
 		create topic
-			./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic 10-partitions --partitions "10" --replication-factor "1"
+			./bin/kafka-topics.sh --zookeeper kafka-zookeeper.staging.svc.cluster.local:2181 --create --if-not-exists --topic 12-partitions --partitions "12" --replication-factor "1"
 
 
 
@@ -23,7 +37,7 @@ waltrough
 		kubectl -n kafka delete cm broker-config
 		kubectl -n kafka delete sts kafka
 
-		kubectl -n monitoring port-forward mon-grafana-65cd69b4cd-dt6hg 3000:3000 &
+		kubectl -n monitoring port-forward mon-grafana-65cd69b4cd-hvjc4 3000:3000 &
 		kubectl -n monitoring get ServiceMonitor
 		kubectl -n monitoring get secret prometheus-mon-prometheus -ojson | jq -r '.data["prometheus.yaml"]' | base64 -d | grep job_name
 		kubectl -n kafka exec -it kafka-0 --container broker bash
@@ -31,8 +45,83 @@ waltrough
 
 
 
+Testing a dockerized kafka+zoo [2] running on VMs
+
+	start a shell
+		./start-kafka-shell.sh 10.132.0.2 10.132.0.2:2181
+
+	create a topic
+		$KAFKA_HOME/bin/kafka-topics.sh --create --topic topic --partitions 1 --zookeeper $ZK --replication-factor 1
+
+	start a producer (in the shell)
+		$KAFKA_HOME/bin/kafka-console-producer.sh --topic=topic --broker-list=`broker-list.sh`
+
+	start a consumer (in the shell)
+		$KAFKA_HOME/bin/kafka-console-consumer.sh --bootstrap-server 10.132.0.2:9092 --topic topic --from-beginning
+
+
+
+Testing with Strimzi
+	
+	setup (TBD)
+		https://github.com/strimzi/strimzi-kafka-operator
+		http://strimzi.io/docs/0.5.0/#overview
+
+	kafka "cli"
+		bin/kafka-topics.sh --list --zookeeper localhost:2181X
+		(port is calculated with -> 2181 * 10 + $number_of_node)
+
+
+Usefull Articles
+
+	Load testing Apache Kafka on AWS
+	https://grey-boundary.io/load-testing-apache-kafka-on-aws/
+
+	Get Kubernetes Cluster Metrics with Prometheus in 5 Minutes
+	https://akomljen.com/get-kubernetes-cluster-metrics-with-prometheus-in-5-minutes/
+
+	Monitoring Apache Kafka with Prometheus
+	https://blog.rntech.co.uk/2016/10/20/monitoring-apache-kafka-with-prometheus/
+
+	Kafka to the Maxka - (Kafka Performance Tuning)
+	https://www.slideshare.net/Hadoop_Summit/kafka-to-the-maxka-kafka-performance-tuning
+
+	Unofficial Storm and Kafka Best Practices Guide
+	https://community.hortonworks.com/articles/550/unofficial-storm-and-kafka-best-practices-guide.html
+
+	Optimizing Your Apache Kafka Deployment
+	https://www.confluent.io/wp-content/uploads/Optimizing-Your-Apache-Kafka-Deployment-1.pdf
+
+	Apache Kafka - How to Load Test with JMeter
+	https://www.blazemeter.com/blog/apache-kafka-how-to-load-test-with-jmeter
+
+	Kafka docs - Persistence
+	https://kafka.apache.org/documentation/#design_filesystem
+
+	Kubernetes Kafka K8SKafka (k8s contrib with usefull kafka configs and override)
+	https://github.com/kubernetes/contrib/tree/master/statefulsets/kafka
+
+	File Descriptor Limit (Linux)
+	https://docs.oracle.com/cd/E19476-01/821-0505/file-descriptor-requirements.html
+
+	Optimizing Persistent Disk and Local SSD Performance (on GCE)
+	https://cloud.google.com/compute/docs/disks/performance
+	https://cloud.google.com/compute/docs/disks/performance#ssd-pd-performance
+	https://cloud.google.com/compute/docs/disks/performance#egress_performance_cap
+
+
+
+
+
+More References
 
 [1]
-https://gist.github.com/solsson/be80667dade3b82538e212512e752637
-https://github.com/rama-nallamilli/kafka-prometheus-monitoring/blob/master/prometheus-jmx-exporter/confd/templates/kafka.yml.tmpl
-https://docs.confluent.io/current/kafka/monitoring.html#broker-metrics
+	https://gist.github.com/solsson/be80667dade3b82538e212512e752637
+	https://github.com/rama-nallamilli/kafka-prometheus-monitoring/blob/master/prometheus-jmx-exporter/confd/templates/kafka.yml.tmpl
+	https://docs.confluent.io/current/kafka/monitoring.html#broker-metrics
+
+[2]
+	https://hub.docker.com/r/wurstmeister/kafka/
+	http://wurstmeister.github.io/kafka-docker/
+	https://kafka.apache.org/quickstart#quickstart_consume
+

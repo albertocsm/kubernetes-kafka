@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: pzoo
-  namespace: kafka
+  name: kafka-zookeeper-headless
+  namespace: staging
 spec:
   ports:
   - port: 2888
@@ -11,5 +11,5 @@ spec:
     name: leader-election
   clusterIP: None
   selector:
-    app: zookeeper
+    app: kafka-zookeeper
     storage: persistent
