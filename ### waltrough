@@ -77,6 +77,12 @@ Usefull Articles
 	Load testing Apache Kafka on AWS
 	https://grey-boundary.io/load-testing-apache-kafka-on-aws/
 
+	Processing trillions of events per day with Apache Kafka on Azure
+	https://azure.microsoft.com/en-us/blog/processing-trillions-of-events-per-day-with-apache-kafka-on-azure/
+
+	Finding Kafka’s throughput limit in Dropbox infrastructure
+	https://blogs-dropbox-com.cdn.ampproject.org/v/s/blogs.dropbox.com/tech/2019/01/finding-kafkas-throughput-limit-in-dropbox-infrastructure/amp/?amp_js_v=0.1#referrer=https%3A%2F%2Fwww.google.com&amp_tf=From%20%251%24s&ampshare=https%3A%2F%2Fblogs.dropbox.com%2Ftech%2F2019%2F01%2Ffinding-kafkas-throughput-limit-in-dropbox-infrastructure%2F
+
 	Get Kubernetes Cluster Metrics with Prometheus in 5 Minutes
 	https://akomljen.com/get-kubernetes-cluster-metrics-with-prometheus-in-5-minutes/
 
@@ -85,6 +91,12 @@ Usefull Articles
 
 	Kafka to the Maxka - (Kafka Performance Tuning)
 	https://www.slideshare.net/Hadoop_Summit/kafka-to-the-maxka-kafka-performance-tuning
+
+	Run Confluent Platform on Kubernetes Using Best Practices
+	https://www.confluent.io/resources/recommendations-for-deploying-apache-kafka-on-kubernetes
+
+	Putting Kafka In Jail – Best Practices To Run Kafka On Kubernetes & DC/OS
+	https://www.slideshare.net/Lightbend/putting-kafka-in-jail-best-practices-to-run-kafka-on-kubernetes-dcos
 
 	Unofficial Storm and Kafka Best Practices Guide
 	https://community.hortonworks.com/articles/550/unofficial-storm-and-kafka-best-practices-guide.html
